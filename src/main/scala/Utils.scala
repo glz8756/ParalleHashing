@@ -9,8 +9,8 @@ object Utils {
 
   def debug(s: String):Unit = println(s"${Thread.currentThread.getName}: $s")
 
-  def convertToMD5(input: Either[Throwable, Array[Byte]], index: Int): (String, Int) = {
-    input match {
+  def convertToMD5(in: Either[Throwable, Array[Byte]], index: Int): (String, Int) = {
+    in match {
       case Right(in) =>
         val md5Str = MessageDigest.getInstance("MD5").digest(in)
         (new BigInteger(1, md5Str).toString(16), index)
