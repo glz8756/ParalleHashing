@@ -7,14 +7,14 @@ import scala.util.{Failure, Success, Try}
 
 object Utils {
 
-  def debug(s: String) = println(s"${Thread.currentThread.getName}: $s")
+  def debug(s: String):Unit = println(s"${Thread.currentThread.getName}: $s")
 
   def convertToMD5(input: Either[Throwable, Array[Byte]], index: Int): (String, Int) = {
     input match {
       case Right(in) =>
         val md5Str = MessageDigest.getInstance("MD5").digest(in)
-        ( new BigInteger(1, md5Str).toString(16), index)
-      case Left(e) => (s"invalidate url ${e.getMessage}", -1)
+        (new BigInteger(1, md5Str).toString(16), index)
+      case Left(e) => (s"invalid url ${e.getMessage}", -1)
     }
   }
 
